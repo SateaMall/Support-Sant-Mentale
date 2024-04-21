@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Santé Mentale</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="formular">
+        <form method="POST">
+            {{ form.csrf_token }}
+            <h3 class="form-group title" >Remplissez la formule suivante</h3>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.nom.label }} {{ form.nom(size=32, class_='form-control') }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.prenom.label }} {{ form.prenom(size=32, class_='form-control') }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.situationPersonnel.label }} {{ form.situationPersonnel(class_='form-control') }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form.sexe.label }} {{ form.sexe(class_='form-control') }}
+                </div>
+                <div class="form-group col-md-2">
+                    {{ form.age.label }} {{ form.age(size=32, class_='form-control') }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.pays.label }} {{ form.pays(size=32, class_='form-control') }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.ville.label }} {{ form.ville(size=32, class_='form-control') }}
+                </div>
+            </div>
+
+            <div class="form-row form-group" >
+                {{ form.niveauEtude.label }} {{ form.niveauEtude (class_='form-control')}}
+            </div>
+
+            <div class="form-row form-group">
+                {{ form.problemeSpecifique.label }}
+                {{ form.problemeSpecifique(rows=4, class_='form-control') }} 
+            </div>
+            {{ form.humeur.label }}
+            <div style="display: flex; align-items: center;" class="form-row form-group">
+                <span style="margin-right: 10px;">😔</span>
+                <input type="range" name="humeur" min="0" max="10" value="{{ form.humeur.data or 5 }}" style="flex-grow: 1;">
+                <span style="margin-left: 10px;">😊</span>
+            </div>
+            <div class="button-container">
+                {{ form.submit( class='button-sub') }}
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
